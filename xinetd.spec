@@ -9,6 +9,7 @@ Release:	1
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
+# Source0-md5:	37df520fb367beae040daac2b63be5a5
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
 URL:		http://www.xinetd.org/
