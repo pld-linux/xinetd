@@ -2,9 +2,9 @@ Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
 Version:	2.3.7
-Release:	1
+Release:	2
 Group:		Daemons
-License:	distributable (BSD-like)
+License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
@@ -76,8 +76,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inet.script
 cp xinetd/sample.conf .
 cp xinetd/xconv.pl .
 
-gzip -9nf README CHANGELOG sample.conf xconv.pl
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -95,7 +93,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README CHANGELOG sample.conf xconv.pl
 %attr(755,root,root) %{_sbindir}/*
 %attr(640,root,root) %ghost %{_sysconfdir}/xinetd.conf
 %attr(640,root,root) /etc/sysconfig/rc-inet.script
