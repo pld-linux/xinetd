@@ -16,17 +16,13 @@ URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libwrap-devel
-Requires:	rc-inetd
-Prereq:		rc-scripts
-Requires:	/etc/rc.d/init.d/rc-inetd
+PreReq:		rc-inetd
 Provides:	inetdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	inetdaemon
 Obsoletes:	inetd
 Obsoletes:	rlinetd
 Obsoletes:	netkit-base
-
-%define         _sysconfdir     /etc
 
 %description
 xinetd is a powerful replacement for inetd. xinetd has access control
