@@ -1,4 +1,4 @@
-# $Revision: 1.2 $
+# $Revision: 1.3 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
@@ -9,7 +9,6 @@ Group(pl):	Serwery
 License:	GPL
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 URL:		http://www.xinetd.org/
-Requires:	rc-scripts
 BuildRequires:	libwrap-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	inetdaemon
@@ -54,6 +53,7 @@ install -m 644 xinetd/xinetd.log.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.log.
 install -m 644 xinetd/xinetd.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.8
 install -m 644 xinetd/itox.8 $RPM_BUILD_ROOT/%{_mandir}/man8/itox.8
 
+strip $RPM_BUILD_ROOT/%{_sbindir}/*
 
 cp xinetd/sample.conf .
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{5,8}/* README CHANGELOG sample.conf
