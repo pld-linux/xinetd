@@ -44,7 +44,7 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 autoconf
 %configure  \
 	--with-libwrap \
-	%{?!_without_ipv6:--with-inet6}  \
+	--with-inet6  \
 	--with-loadavg
 %{__make}
 cp xinetd/xinetd xinetd/xinetd-ipv6
