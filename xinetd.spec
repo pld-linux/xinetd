@@ -2,7 +2,7 @@ Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
 Version:	2.3.3
-Release:	1
+Release:	2
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
@@ -47,19 +47,27 @@ autoconf
 	%{?!_without_ipv6:--with-inet6}  \
 	--with-loadavg
 %{__make}
+cp xinetd/xinetd xinetd/xinetd-ipv6
+%{__make} clean
+rm -f config.cache
+%configure  \
+	--with-libwrap \
+	--with-loadavg
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_sbindir} \
-	$RPM_BUILD_ROOT/%{_mandir}/man{5,8} \
-	$RPM_BUILD_ROOT/%{_sysconfdir}/{rc.d/init.d,sysconfig}
+install -d $RPM_BUILD_ROOT%{_sbindir} \
+	$RPM_BUILD_ROOT%{_mandir}/man{5,8} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/{rc.d/init.d,sysconfig}
 
-install xinetd/xinetd $RPM_BUILD_ROOT/%{_sbindir}
-install xinetd/itox $RPM_BUILD_ROOT/%{_sbindir}
-install xinetd/xinetd.conf.man $RPM_BUILD_ROOT/%{_mandir}/man5/xinetd.conf.5
-install xinetd/xinetd.log.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.log.8
-install xinetd/xinetd.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.8
-install xinetd/itox.8 $RPM_BUILD_ROOT/%{_mandir}/man8/itox.8
+install xinetd/xinetd $RPM_BUILD_ROOT%{_sbindir}
+install xinetd/xinetd-ipv6 $RPM_BUILD_ROOT%{_sbindir}
+install xinetd/itox $RPM_BUILD_ROOT%{_sbindir}
+install xinetd/xinetd.conf.man $RPM_BUILD_ROOT%{_mandir}/man5/xinetd.conf.5
+install xinetd/xinetd.log.man $RPM_BUILD_ROOT%{_mandir}/man8/xinetd.log.8
+install xinetd/xinetd.man $RPM_BUILD_ROOT%{_mandir}/man8/xinetd.8
+install xinetd/itox.8 $RPM_BUILD_ROOT%{_mandir}/man8/itox.8
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inet.script
 :> $RPM_BUILD_ROOT%{_sysconfdir}/xinetd.conf
 
