@@ -2,7 +2,7 @@ Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
 Version:	2.1.8.9pre13
-Release:	2
+Release:	6
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
@@ -24,9 +24,12 @@ Obsoletes:	netkit-base
 %define         _sysconfdir     /etc
 
 %description
-xinetd is a secure and enhances replacement for inetd. Some features
-include built-in, libwrap based access control, resource control and
-native IPv6 support.
+Xinetd is a secure replacement for inetd, the Internet services
+daemon. Xinetd provides access control for all services based on the
+address of the remote host and/or on time of access and can prevent
+denial-of-access attacks. Xinetd provides extensive logging, has no
+limit on the number of server arguments and you can bind specific
+services to specific IP addresses on your host machine.
 
 %description -l pl
 xinetd jest bezpieczniejszym i rozbudowanym odpowiednikiem inetd.
@@ -77,7 +80,6 @@ fi
 if [ "$1" = "0" -a -f /var/lock/subsys/rc-inetd ]; then
         /etc/rc.d/init.d/rc-inetd stop
 fi
-
 
 %files
 %defattr(644,root,root,755)
