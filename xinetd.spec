@@ -1,7 +1,7 @@
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
-Version:	2.3.5
+Version:	2.3.7
 Release:	1
 Group:		Daemons
 License:	distributable (BSD-like)
