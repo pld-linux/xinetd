@@ -42,7 +42,7 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 %patch0 -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure  \
 	--with-libwrap \
