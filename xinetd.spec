@@ -1,7 +1,7 @@
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
-Version:	2.1.8.9pre16
+Version:	2.3.0
 Release:	1
 Group:		Daemons
 Group(de):	Server
