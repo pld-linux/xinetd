@@ -1,4 +1,4 @@
-# $Revision: 1.6 $
+# $Revision: 1.7 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
@@ -41,7 +41,8 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/%{_sbindir} \
-	$RPM_BUILD_ROOT/%{_mandir}/man{5,8},%{_sysconfdir}}
+	$RPM_BUILD_ROOT/%{_mandir}/man{5,8} \
+	$RPM_BUILD_DIR/%{_sysconfdir}
 
 install xinetd/xinetd $RPM_BUILD_ROOT/%{_sbindir}
 install xinetd/itox $RPM_BUILD_ROOT/%{_sbindir}
