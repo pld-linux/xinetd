@@ -105,7 +105,7 @@ xinetd также имеет возможность привязывать конкретные сервисы к
 %{__aclocal}
 %{__autoconf}
 cp -f /usr/share/automake/config.sub .
-%configure  \
+%configure \
 	--with-libwrap \
 	--with-loadavg
 %{__make}
@@ -133,14 +133,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 if [ -f /var/lock/subsys/rc-inetd ]; then
-        /etc/rc.d/init.d/rc-inetd restart 1>&2
+	/etc/rc.d/init.d/rc-inetd restart 1>&2
 else
-        echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start xinetd" 1>&2
+	echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start xinetd" 1>&2
 fi
 
 %preun
 if [ "$1" = "0" -a -f /var/lock/subsys/rc-inetd ]; then
-        /etc/rc.d/init.d/rc-inetd stop
+	/etc/rc.d/init.d/rc-inetd stop
 fi
 
 %files
