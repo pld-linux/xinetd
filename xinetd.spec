@@ -4,12 +4,12 @@ Summary(pt_BR):	O xinetd И um substituto poderoso e seguro para o inetd
 Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
-Version:	2.3.12
-Release:	2
+Version:	2.3.13
+Release:	1
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
-# Source0-md5:	16154191731b6449d934eecacef647dd
+# Source0-md5:	4295b5fe12350f09b5892b363348ac8b
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
 URL:		http://www.xinetd.org/
@@ -18,11 +18,11 @@ BuildRequires:	automake
 BuildRequires:	libwrap-devel
 PreReq:		rc-inetd
 Provides:	inetdaemon
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	inetdaemon
 Obsoletes:	inetd
 Obsoletes:	rlinetd
 Obsoletes:	netkit-base
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 xinetd is a powerful replacement for inetd. xinetd has access control
