@@ -73,13 +73,14 @@ parse_one_service()
 	echo "	port		= $PORT"
 	echo "	user		= $USER"
 	[ "${GROUP:-n}" = "n" ] || echo "	group		= $GROUP"
-# Don't know what to do with this
-#	if [ "$SERVER" = "tcpd" ] ; then
-#		echo "	tcpd		{ exit; }"
-#	else
-#		echo "	server		$SERVER"
-#	fi
-	echo "	server		= $DAEMON"
+        if [ "$SERVER" = "tcpd" ] ; then
+                SERVER="$DAEMON"
+        else
+                DAEMONARGS="$DAEMON $DAEMONARGS"
+                XFLAGS="$XFLAGS NAMEINARGS "
+        fi
+        echo "server = $SERVER"
+
 	[ "${DAEMONARGS:-n}" = "n" ] || echo "	server_args	= $DAEMONARGS"
 
 	for i in $FLAGS ; do
