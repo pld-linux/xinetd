@@ -7,9 +7,11 @@ Group:		Daemons
 License:	distributable (BSD-like)
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 Source1:	%{name}.inet.sh
+Patch0:		%{name}-no_libnsl.patch
 URL:		http://www.xinetd.org/
-BuildRequires:	libwrap-devel
 BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libwrap-devel
 Requires:	rc-inetd
 Prereq:		rc-scripts
 Requires:	/etc/rc.d/init.d/rc-inetd
@@ -37,8 +39,10 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+aclocal
 %{__autoconf}
 %configure  \
 	--with-libwrap \
