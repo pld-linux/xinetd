@@ -12,7 +12,7 @@ Source1:	%{name}.inet.sh
 URL:		http://www.xinetd.org/
 BuildRequires:	libwrap-devel
 Requires:	rc-inetd
-Requires:	rc-scripts
+Prereq:		rc-scripts
 Requires:	/etc/rc.d/init.d/rc-inetd
 Provides:	inetdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
