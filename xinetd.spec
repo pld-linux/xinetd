@@ -70,7 +70,11 @@ gzip -9nf README CHANGELOG sample.conf xconv.pl
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%rc_inetd_post
+if [ -f /var/lock/subsys/rc-inetd ]; then
+        /etc/rc.d/init.d/rc-inetd restart 1>&2
+else
+        echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start xinetd" 1>&2
+fi
 
 %preun
 if [ "$1" = "0" -a -f /var/lock/subsys/rc-inetd ]; then
