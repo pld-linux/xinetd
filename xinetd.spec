@@ -1,4 +1,4 @@
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
@@ -47,7 +47,6 @@ mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man8
 mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}
 install -m 755 xinetd/xinetd $RPM_BUILD_ROOT/%{_sbindir}
 install -m 755 xinetd/itox $RPM_BUILD_ROOT/%{_sbindir}
-install -m 755 xinetd/xconv.pl $RPM_BUILD_ROOT/%{_sbindir}
 install -m 644 xinetd/xinetd.conf.man $RPM_BUILD_ROOT/%{_mandir}/man5/xinetd.conf.5
 install -m 644 xinetd/xinetd.log.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.log.8
 install -m 644 xinetd/xinetd.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.8
@@ -56,7 +55,9 @@ install -m 644 xinetd/itox.8 $RPM_BUILD_ROOT/%{_mandir}/man8/itox.8
 strip $RPM_BUILD_ROOT/%{_sbindir}/*
 
 cp xinetd/sample.conf .
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{5,8}/* README CHANGELOG sample.conf
+cp xinetd/xconv.pl .
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{5,8}/* README CHANGELOG sample.conf \
+	itox xconv.pl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
