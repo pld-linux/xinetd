@@ -2,7 +2,7 @@ Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
 Version:	2.3.0
-Release:	1
+Release:	2
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
@@ -42,7 +42,7 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 %build
 %configure  \
 	--with-libwrap \
-	%{?!_without_ipv6:--with-inet6} \
+	--with-inet6 \
 	--with-loadavg
 %{__make}
 
