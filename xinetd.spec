@@ -5,7 +5,7 @@ Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
 Version:	2.3.12
-Release:	1
+Release:	2
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
@@ -106,14 +106,6 @@ xinetd также имеет возможность привязывать конкретные сервисы к
 %{__autoconf}
 %configure  \
 	--with-libwrap \
-	--with-inet6  \
-	--with-loadavg
-%{__make}
-cp xinetd/xinetd xinetd/xinetd-ipv6
-%{__make} clean
-rm -f config.cache
-%configure  \
-	--with-libwrap \
 	--with-loadavg
 %{__make}
 
@@ -124,7 +116,6 @@ install -d $RPM_BUILD_ROOT%{_sbindir} \
 	$RPM_BUILD_ROOT%{_sysconfdir}/{rc.d/init.d,sysconfig}
 
 install xinetd/xinetd $RPM_BUILD_ROOT%{_sbindir}
-install xinetd/xinetd-ipv6 $RPM_BUILD_ROOT%{_sbindir}
 install xinetd/itox $RPM_BUILD_ROOT%{_sbindir}
 install xinetd/xinetd.conf.man $RPM_BUILD_ROOT%{_mandir}/man5/xinetd.conf.5
 install xinetd/xinetd.log.man $RPM_BUILD_ROOT%{_mandir}/man8/xinetd.log.8
