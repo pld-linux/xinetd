@@ -1,4 +1,4 @@
-# $Revision: 1.1 $
+# $Revision: 1.2 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
@@ -10,7 +10,6 @@ License:	GPL
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 URL:		http://www.xinetd.org/
 Requires:	rc-scripts
-BuildRequires:	libcap-devel
 BuildRequires:	libwrap-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	inetdaemon
@@ -34,7 +33,7 @@ zasobów i wbudowana obs³uga IPv6.
 
 %build
 LDFLAGS="-s"; export LDFLAGS
-%configure \
+%configure  \
 	--with-libwrap \
 	--with-inet6 \
 	--with-loadavg
@@ -43,11 +42,21 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR="$RPM_BUILD_ROOT"
+mkdir -p $RPM_BUILD_ROOT/%{_sbindir}
+mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man5
+mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man8
+mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}
+install -m 755 xinetd/xinetd $RPM_BUILD_ROOT/%{_sbindir}
+install -m 755 xinetd/itox $RPM_BUILD_ROOT/%{_sbindir}
+install -m 755 xinetd/xconv.pl $RPM_BUILD_ROOT/%{_sbindir}
+install -m 644 xinetd/xinetd.conf.man $RPM_BUILD_ROOT/%{_mandir}/man5/xinetd.conf.5
+install -m 644 xinetd/xinetd.log.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.log.8
+install -m 644 xinetd/xinetd.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.8
+install -m 644 xinetd/itox.8 $RPM_BUILD_ROOT/%{_mandir}/man8/itox.8
 
-:> $RPM_BUILD_ROOT%{_sysconfdir}/xinetd.conf
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{1,5,8}/* README CHANGELOG
+cp xinetd/sample.conf .
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{5,8}/* README CHANGELOG sample.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -55,5 +64,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz
-%attr(755,root,root) %{_sbindir}/xinetd
+%attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man[158]/*
