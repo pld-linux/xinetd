@@ -8,7 +8,8 @@ CONFIG_FILE_UMASK=027
 # inet server daemon executable file name
 . /etc/rc.d/init.d/functions
 . /etc/sysconfig/network
-if is_yes "$NETWORKING_IPV6" && [ -x /usr/sbin/xinetd-ipv6 ]; then                                            
+
+if is_yes "$IPV6_NETWORKING" && [ -x /usr/sbin/xinetd-ipv6 ]; then                                            
     INETDAEMON="/usr/sbin/xinetd-ipv6"
 else
     INETDAEMON="/usr/sbin/xinetd"
