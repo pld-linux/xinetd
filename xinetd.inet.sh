@@ -2,7 +2,7 @@
 PROCESS_NAME=xinetd
 
 # inet server config
-CONFIG_FILE=xinetd.conf
+CONFIG_FILE=/etc/xinetd.conf
 CONFIG_FILE_UMASK=027
 
 # inet server daemon executable file name
