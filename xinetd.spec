@@ -1,10 +1,10 @@
-# $Revision: 1.8 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
 Version:	2.1.8.8p3
 Release:	1
 Group:		Daemons
+Group(de):	Server
 Group(pl):	Serwery
 License:	GPL
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
