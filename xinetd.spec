@@ -2,7 +2,7 @@ Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
 Version:	2.1.8.9pre13
-Release:	1
+Release:	2
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 if [ -f /var/lock/subsys/rc-inetd ]; then
         /etc/rc.d/init.d/rc-inetd restart 1>&2
 else
-        echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start rlinetd" 1>&2
+        echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start xinetd" 1>&2
 fi
 
 %preun
