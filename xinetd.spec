@@ -39,7 +39,7 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 %setup -q
 
 %build
-autoconf
+%{__autoconf}
 %configure  \
 	--with-libwrap \
 	--with-inet6  \
