@@ -5,7 +5,7 @@ Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
 Version:	2.3.13
-Release:	1
+Release:	2
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
@@ -104,6 +104,7 @@ xinetd также имеет возможность привязывать конкретные сервисы к
 %build
 %{__aclocal}
 %{__autoconf}
+cp -f /usr/share/automake/config.sub .
 %configure  \
 	--with-libwrap \
 	--with-loadavg
