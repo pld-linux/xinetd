@@ -1,4 +1,4 @@
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
@@ -57,7 +57,7 @@ strip $RPM_BUILD_ROOT/%{_sbindir}/*
 cp xinetd/sample.conf .
 cp xinetd/xconv.pl .
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{5,8}/* README CHANGELOG sample.conf \
-	itox xconv.pl
+	xconv.pl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
