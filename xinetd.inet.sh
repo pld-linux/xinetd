@@ -57,7 +57,8 @@ parse_one_service()
 		return $ERROR_CODE
 	fi
 
-	echo "service $SERVICE_NAME {"
+	echo "service $SERVICE_NAME"
+	echo "{"
 	if [ "${SERVICE_TYPE:-n}" != "n" ]; then
 		for i in $SERVICE_TYPE ; do
 			if [ "$i" = "RPC" ] ; then
@@ -74,12 +75,12 @@ parse_one_service()
 	echo "	user		= $USER"
 	[ "${GROUP:-n}" = "n" ] || echo "	group		= $GROUP"
         if [ "$SERVER" = "tcpd" ] ; then
-                SERVER="$DAEMON"
+		SERVER="$DAEMON"
         else
                 DAEMONARGS="$DAEMON $DAEMONARGS"
                 XFLAGS="$XFLAGS NAMEINARGS "
         fi
-        echo "server = $SERVER"
+	echo "	server		= $SERVER"
 
 	[ "${DAEMONARGS:-n}" = "n" ] || echo "	server_args	= $DAEMONARGS"
 
