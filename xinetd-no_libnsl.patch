@@ -1,0 +1,20 @@
+--- xinetd-2.3.7/configure.in~	Tue Aug 13 10:56:03 2002
++++ xinetd-2.3.7/configure.in	Tue Aug 13 10:56:03 2002
+@@ -270,8 +270,6 @@
+ 			AC_DEFINE(LIBWRAP)
+ 			WRAPLIBS="-lwrap"
+ 			AC_DEFINE(HAVE_LIBWRAP) ])
+-		AC_CHECK_LIB(nsl, yp_get_default_domain, [ 
+-			WRAPLIBS="$WRAPLIBS -lnsl" ])
+ 		LIBS="$WRAPLIBS $LIBS"
+ 		;;
+ 	*)
+@@ -282,8 +280,6 @@
+ 		else
+ 			WRAPLIBS="$withval"
+ 		fi
+-		AC_CHECK_LIB(nsl, yp_get_default_domain, [ 
+-			WRAPLIBS="$WRAPLIBS -lnsl" ])
+ 		OLDLIBS="$LIBS"
+ 		LIBS="$WRAPLIBS $LIBS"
+ 		AC_TRY_LINK([ int allow_severity; int deny_severity; ], 
