@@ -1,5 +1,5 @@
 Summary:	Xinetd - a powerful replacement for inetd
-Summary(pl):	Xinetd - rozbudowany zaminnik inetd
+Summary(pl):	Xinetd - rozbudowany zamiennik inetd
 Summary(pt_BR):	O xinetd И um substituto poderoso e seguro para o inetd
 Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
