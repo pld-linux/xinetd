@@ -1,4 +1,4 @@
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 Summary:	Secure replacement for inetd
 Summary(pl):	Bezpieczny odpowiednik inetd
 Name:		xinetd
@@ -31,7 +31,6 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 %setup -q
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure  \
 	--with-libwrap \
 	--with-inet6 \
@@ -51,12 +50,10 @@ install xinetd/xinetd.log.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.log.8
 install xinetd/xinetd.man $RPM_BUILD_ROOT/%{_mandir}/man8/xinetd.8
 install xinetd/itox.8 $RPM_BUILD_ROOT/%{_mandir}/man8/itox.8
 
-strip $RPM_BUILD_ROOT/%{_sbindir}/*
-
 cp xinetd/sample.conf .
 cp xinetd/xconv.pl .
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{5,8}/* README CHANGELOG sample.conf \
-	xconv.pl
+
+gzip -9nf README CHANGELOG sample.conf xconv.pl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
