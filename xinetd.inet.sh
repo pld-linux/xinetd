@@ -132,5 +132,5 @@ status_rc_inetd()
 
 reload_config()
 {
-	killall -USR2 $INETDAEMON
+	killall -12 $INETDAEMON
 }
