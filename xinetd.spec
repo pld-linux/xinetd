@@ -11,6 +11,7 @@ Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 Source1:	%{name}.inet.sh
 URL:		http://www.xinetd.org/
 BuildRequires:	libwrap-devel
+BuildRequires:	autoconf
 Requires:	rc-inetd
 Prereq:		rc-scripts
 Requires:	/etc/rc.d/init.d/rc-inetd
@@ -40,6 +41,7 @@ kontrola zu¿ycia zasobów i wbudowana obs³uga IPv6.
 %setup -q
 
 %build
+autoconf
 %configure  \
 	--with-libwrap \
 	%{?!_without_ipv6:--with-inet6}  \
