@@ -4,12 +4,12 @@ Summary(pt_BR):	O xinetd И um substituto poderoso e seguro para o inetd
 Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
-Version:	2.3.11
+Version:	2.3.12
 Release:	1
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
-# Source0-md5:	37df520fb367beae040daac2b63be5a5
+# Source0-md5:	16154191731b6449d934eecacef647dd
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
 URL:		http://www.xinetd.org/
