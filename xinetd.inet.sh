@@ -6,7 +6,13 @@ CONFIG_FILE=/etc/xinetd.conf
 CONFIG_FILE_UMASK=027
 
 # inet server daemon executable file name
-INETDAEMON=/usr/sbin/xinetd
+. /etc/rc.d/init.d/functions
+. /etc/sysconfig/network
+if is_yes "$NETWORKING_IPV6" && [ -x /usr/sbin/xinetd-ipv6 ]; then                                            
+    INETDAEMON="/usr/sbin/xinetd-ipv6"
+else
+    INETDAEMON="/usr/sbin/xinetd"
+fi
 
 # addytional inet server daemon argumments
 INETDAEMON_ARGS=
