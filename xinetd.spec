@@ -4,7 +4,7 @@ Summary(pt_BR):	O xinetd И um substituto poderoso e seguro para o inetd
 Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
-Version:	2.3.10
+Version:	2.3.11
 Release:	1
 Group:		Daemons
 License:	BSD-like
