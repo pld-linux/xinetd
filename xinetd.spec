@@ -6,7 +6,7 @@ Release:	1
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
-License:	Distributable (BSD-like)
+License:	distributable (BSD-like)
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 Source1:	%{name}.inet.sh
 URL:		http://www.xinetd.org/
