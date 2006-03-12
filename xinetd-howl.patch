@@ -1,0 +1,29 @@
+--- xinetd-2.3.14/configure.in.orig	2005-03-31 01:15:28.000000000 +0200
++++ xinetd-2.3.14/configure.in	2006-03-12 12:10:15.375690250 +0100
+@@ -52,12 +52,10 @@
+ AC_ARG_WITH(howl, [  --with-howl=PATH        Compile in howl support.  
+                           PATH is the prefix where howl is installed,
+                           and is not optional.],
+-   [ OLDCFLAGS=$CFLAGS; CFLAGS="-I$withval/include/howl/ $CFLAGS"; 
+-     OLDLDFLAGS=$LDFLAGS; LDFLAGS="-L$withval/lib/ $LDFLAGS"; 
+-     OLDCPPFLAGS=$CPPFLAGS; CPPFLAGS="-I$withval/include/howl/ $CPPFLAGS";
+-     AC_CHECK_HEADER($withval/include/howl/howl.h, 
++   [ OLDCFLAGS=$CFLAGS; CFLAGS="`pkg-config --cflags howl` $CFLAGS"; 
++     AC_CHECK_HEADER(howl.h, 
+         [AC_DEFINE(HAVE_HOWL) AC_DEFINE(HAVE_MDNS)], 
+-        [CFLAGS=$OLDCFLAGS; LDFLAGS=$OLDLDFLAGS; CPPFLAGS=$OLDCPPFLAGS;]) 
++        [CFLAGS=$OLDCFLAGS;]) 
+      AC_CHECK_LIB(howl, sw_discovery_publish, [LIBS="-lhowl $LIBS"], [
+         OLDLIBS=$LIBS; LIBS="-lpthread $LIBS"; 
+         AC_CHECK_LIB(howl, main, [LIBS="-lhowl $LIBS"],
+--- xinetd-2.3.14/xinetd/xmdns.c.orig	2005-04-08 23:23:07.000000000 +0200
++++ xinetd-2.3.14/xinetd/xmdns.c	2006-03-12 12:40:36.541506000 +0100
+@@ -139,7 +139,7 @@
+ 
+ int xinetd_mdns_poll(void) {
+ #ifdef HAVE_HOWL
+-   if( sw_discovery_read_socket(*(sw_discovery *)ps.rws.mdns_state) == SW_OKAY )
++   if(ps.rws.mdns_state && (sw_discovery_read_socket(*(sw_discovery *)ps.rws.mdns_state) == SW_OKAY))
+       return 0;
+ #endif
+    return -1;
