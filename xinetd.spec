@@ -16,11 +16,15 @@ Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 # Source0-md5:	567382d7972613090215c6c54f9b82d9
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
+Patch1:		%{name}-tcp_rpc.patch
+Patch2:		%{name}-howl.patch
+Patch3:		%{name}-man.patch
 URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_howl:BuildRequires:	howl-devel}
 BuildRequires:	libwrap-devel
+%{?with_howl:BuildRequires:	pkgconfig}
 Requires(post,preun):	rc-inetd
 Requires:	rc-inetd
 Provides:	inetdaemon
@@ -108,6 +112,9 @@ xinetd также имеет возможность привязывать конкретные сервисы к
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__aclocal}
