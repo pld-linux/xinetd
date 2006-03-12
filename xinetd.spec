@@ -1,23 +1,28 @@
+#
+# Conditional build:
+%bcond_without	howl	# mdns/howl service registration support
+#
 Summary:	Xinetd - a powerful replacement for inetd
 Summary(pl):	Xinetd - rozbudowany zamiennik inetd
 Summary(pt_BR):	O xinetd И um substituto poderoso e seguro para o inetd
 Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
-Version:	2.3.13
-Release:	3
+Version:	2.3.14
+Release:	1
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
-# Source0-md5:	4295b5fe12350f09b5892b363348ac8b
+# Source0-md5:	567382d7972613090215c6c54f9b82d9
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
-Patch1:		%{name}-gcc4.patch
 URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_howl:BuildRequires:	howl-devel}
 BuildRequires:	libwrap-devel
-PreReq:		rc-inetd
+Requires(post,preun):	rc-inetd
+Requires:	rc-inetd
 Provides:	inetdaemon
 Obsoletes:	inetdaemon
 Obsoletes:	inetd
@@ -103,13 +108,13 @@ xinetd также имеет возможность привязывать конкретные сервисы к
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__aclocal}
 %{__autoconf}
 cp -f /usr/share/automake/config.sub .
 %configure \
+	%{?with_howl:--with-howl} \
 	--with-libwrap \
 	--with-loadavg
 %{__make}
@@ -118,7 +123,7 @@ cp -f /usr/share/automake/config.sub .
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sbindir} \
 	$RPM_BUILD_ROOT%{_mandir}/man{5,8} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/{rc.d/init.d,sysconfig}
+	$RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
 install xinetd/xinetd $RPM_BUILD_ROOT%{_sbindir}
 install xinetd/itox $RPM_BUILD_ROOT%{_sbindir}
