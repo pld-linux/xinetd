@@ -9,7 +9,7 @@ Summary(ru):	xinetd - богатая возможностями замена inetd
 Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
 Version:	2.3.14
-Release:	1
+Release:	2
 Group:		Daemons
 License:	BSD-like
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
@@ -22,7 +22,7 @@ Patch3:		%{name}-man.patch
 URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_howl:BuildRequires:	howl-devel}
+%{?with_howl:BuildRequires:	howl-devel >= 1.0.0-4}
 BuildRequires:	libwrap-devel
 %{?with_howl:BuildRequires:	pkgconfig}
 Requires(post,preun):	rc-inetd
