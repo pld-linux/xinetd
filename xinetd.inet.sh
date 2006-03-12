@@ -22,7 +22,9 @@ parse_one_service()
 
 	[ "${SERVICE_NAME:-not}" = "not" ]	&& ERROR_CODE=11
 	[ "${PROTOCOL:-not}" = "not" ]		&& ERROR_CODE=12
-	[ "${PORT:-not}" = "not" ]		&& ERROR_CODE=13
+	if [ "${RPCNAME:-not}" = "not" ]; then
+		[ "${PORT:-not}" = "not" ]	&& ERROR_CODE=13
+	fi
 	[ "${USER:-not}" = "not" ]		&& ERROR_CODE=14
 	[ "${SERVER:-not}" = "not" ]		&& ERROR_CODE=15
 	[ "${FLAGS:-not}" = "not" ]		&& ERROR_CODE=16
@@ -74,7 +76,9 @@ parse_one_service()
 	[ "${XSERVICE_TYPE:-n}" = "n" ] || echo "	type		=$XSERVICE_TYPE"
 	echo "	socket_type	= $SOCK_TYPE"
 	echo "	protocol	= $PROTOCOL"
-	echo "	port		= $PORT"
+	if [ "${PORT:-not}" != "not" ]; then
+		echo "	port		= $PORT"
+	fi
 	echo "	user		= $USER"
 	[ "${GROUP:-n}" = "n" ] || echo "	group		= $GROUP"
         if [ "$SERVER" = "tcpd" ] ; then
