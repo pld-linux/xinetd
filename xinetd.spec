@@ -10,8 +10,8 @@ Summary(uk):	xinetd - багата можливостями зам╕на inetd
 Name:		xinetd
 Version:	2.3.14
 Release:	2
-Group:		Daemons
 License:	BSD-like
+Group:		Daemons
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 # Source0-md5:	567382d7972613090215c6c54f9b82d9
 Source1:	%{name}.inet.sh
@@ -25,13 +25,14 @@ BuildRequires:	automake
 %{?with_howl:BuildRequires:	howl-devel >= 1.0.0-4}
 BuildRequires:	libwrap-devel
 %{?with_howl:BuildRequires:	pkgconfig}
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	rc-inetd
 Requires:	rc-inetd
 Provides:	inetdaemon
-Obsoletes:	inetdaemon
 Obsoletes:	inetd
-Obsoletes:	rlinetd
+Obsoletes:	inetdaemon
 Obsoletes:	netkit-base
+Obsoletes:	rlinetd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags	-fno-strict-aliasing
@@ -148,15 +149,11 @@ cp xinetd/xconv.pl .
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd restart 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start xinetd" 1>&2
-fi
+%service rc-inetd restart "xinetd"
 
 %preun
-if [ "$1" = "0" -a -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd stop
+if [ "$1" = "0" ]; then
+	%service rc-inetd stop
 fi
 
 %files
