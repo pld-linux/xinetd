@@ -3,10 +3,10 @@
 %bcond_without	howl	# mdns/howl service registration support
 #
 Summary:	Xinetd - a powerful replacement for inetd
-Summary(pl.UTF-8):   Xinetd - rozbudowany zamiennik inetd
-Summary(pt_BR.UTF-8):   O xinetd é um substituto poderoso e seguro para o inetd
-Summary(ru.UTF-8):   xinetd - богатая возможностями замена inetd
-Summary(uk.UTF-8):   xinetd - багата можливостями заміна inetd
+Summary(pl.UTF-8):	Xinetd - rozbudowany zamiennik inetd
+Summary(pt_BR.UTF-8):	O xinetd é um substituto poderoso e seguro para o inetd
+Summary(ru.UTF-8):	xinetd - богатая возможностями замена inetd
+Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
 Version:	2.3.14
 Release:	2
