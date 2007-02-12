@@ -3,10 +3,10 @@
 %bcond_without	howl	# mdns/howl service registration support
 #
 Summary:	Xinetd - a powerful replacement for inetd
-Summary(pl):	Xinetd - rozbudowany zamiennik inetd
-Summary(pt_BR):	O xinetd И um substituto poderoso e seguro para o inetd
-Summary(ru):	xinetd - богатая возможностями замена inetd
-Summary(uk):	xinetd - багата можливостями зам╕на inetd
+Summary(pl.UTF-8):   Xinetd - rozbudowany zamiennik inetd
+Summary(pt_BR.UTF-8):   O xinetd ц╘ um substituto poderoso e seguro para o inetd
+Summary(ru.UTF-8):   xinetd - п╠п╬пЁп╟я┌п╟я▐ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▐п╪п╦ п╥п╟п╪п╣п╫п╟ inetd
+Summary(uk.UTF-8):   xinetd - п╠п╟пЁп╟я┌п╟ п╪п╬п╤п╩п╦п╡п╬я│я┌я▐п╪п╦ п╥п╟п╪я√п╫п╟ inetd
 Name:		xinetd
 Version:	2.3.14
 Release:	2
@@ -52,63 +52,63 @@ interfaces. This is useful when you want to make services available
 for your internal network, but not the rest of the world. Or to have a
 different service running on the same port, but different interfaces.
 
-%description -l pl
+%description -l pl.UTF-8
 xinetd jest bezpieczniejszym i rozbudowanym odpowiednikiem inetd.
-NiektСre funkcje to wbudowana kontrola dostЙpu (oparta o libwrap),
-kontrola zu©ycia zasobСw i wbudowana obsЁuga IPv6.
+NiektцЁre funkcje to wbudowana kontrola dostд≥pu (oparta o libwrap),
+kontrola zuе╪ycia zasobцЁw i wbudowana obsе┌uga IPv6.
 
-%description -l pt_BR
-O xinetd И um substituto poderoso para o inetd.
+%description -l pt_BR.UTF-8
+O xinetd ц╘ um substituto poderoso para o inetd.
 
 Tem mecanismos de controle de acesso, capacidades extensivas de
-registro de ocorrЙncias, possibilita tornar serviГos disponМveis de
-acordo com horАrios e pode limitar o nЗmero de servidores que podem
+registro de ocorrц╙ncias, possibilita tornar serviц╖os disponц╜veis de
+acordo com horц║rios e pode limitar o nц╨mero de servidores que podem
 ser iniciados, entre outras coisas.
 
-TambИm possibilita redirecionar fluxos TCP para uma mАquina e porta
-remota. Isto И Зtil para aqueles que usam ip masquerading ou NAT e
-querem poder acessar mАquinas na rede interna.
+Tambц╘m possibilita redirecionar fluxos TCP para uma mц║quina e porta
+remota. Isto ц╘ ц╨til para aqueles que usam ip masquerading ou NAT e
+querem poder acessar mц║quinas na rede interna.
 
-TambИm possibilita associar serviГos especМficos a interfaces
-especМficas. Isto И Зtil quando vocЙ quer disponibilizar serviГos para
-sua rede interna, mas nЦo para o resto do mundo. Ou ter um serviГo
+Tambц╘m possibilita associar serviц╖os especц╜ficos a interfaces
+especц╜ficas. Isto ц╘ ц╨til quando vocц╙ quer disponibilizar serviц╖os para
+sua rede interna, mas nцёo para o resto do mundo. Ou ter um serviц╖o
 diferente rodando na mesma porta, mas em interfaces diferentes.
 
-%description -l uk
-xinetd - зам╕на inetd з багатими можливостями.
+%description -l uk.UTF-8
+xinetd - п╥п╟п╪я√п╫п╟ inetd п╥ п╠п╟пЁп╟я┌п╦п╪п╦ п╪п╬п╤п╩п╦п╡п╬я│я┌я▐п╪п╦.
 
-Серед ╕ншого, xinetd ма╓ механ╕зми управл╕ння доступом, багат╕
-можливост╕ протоколювання, здатн╕сть регулювати доступн╕сть серв╕с╕в в
-залежност╕ в╕д часу, може обмежувати к╕льк╕сть одночасно працюючих
-сервер╕в.
+п║п╣я─п╣п╢ я√п╫я┬п╬пЁп╬, xinetd п╪п╟я■ п╪п╣я┘п╟п╫я√п╥п╪п╦ я┐п©я─п╟п╡п╩я√п╫п╫я▐ п╢п╬я│я┌я┐п©п╬п╪, п╠п╟пЁп╟я┌я√
+п╪п╬п╤п╩п╦п╡п╬я│я┌я√ п©я─п╬я┌п╬п╨п╬п╩я▌п╡п╟п╫п╫я▐, п╥п╢п╟я┌п╫я√я│я┌я▄ я─п╣пЁя┐п╩я▌п╡п╟я┌п╦ п╢п╬я│я┌я┐п©п╫я√я│я┌я▄ я│п╣я─п╡я√я│я√п╡ п╡
+п╥п╟п╩п╣п╤п╫п╬я│я┌я√ п╡я√п╢ я┤п╟я│я┐, п╪п╬п╤п╣ п╬п╠п╪п╣п╤я┐п╡п╟я┌п╦ п╨я√п╩я▄п╨я√я│я┌я▄ п╬п╢п╫п╬я┤п╟я│п╫п╬ п©я─п╟я├я▌я▌я┤п╦я┘
+я│п╣я─п╡п╣я─я√п╡.
 
-xinetd ма╓ можлив╕сть перенаправляти TCP потоки на ╕нший хост та порт.
-Це корисно для тих, хто використову╓ ip маскарадинг чи NAT та хоче
-мати можлив╕сть доступу до внутр╕шн╕х хост╕в.
+xinetd п╪п╟я■ п╪п╬п╤п╩п╦п╡я√я│я┌я▄ п©п╣я─п╣п╫п╟п©я─п╟п╡п╩я▐я┌п╦ TCP п©п╬я┌п╬п╨п╦ п╫п╟ я√п╫я┬п╦п╧ я┘п╬я│я┌ я┌п╟ п©п╬я─я┌.
+п╕п╣ п╨п╬я─п╦я│п╫п╬ п╢п╩я▐ я┌п╦я┘, я┘я┌п╬ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я■ ip п╪п╟я│п╨п╟я─п╟п╢п╦п╫пЁ я┤п╦ NAT я┌п╟ я┘п╬я┤п╣
+п╪п╟я┌п╦ п╪п╬п╤п╩п╦п╡я√я│я┌я▄ п╢п╬я│я┌я┐п©я┐ п╢п╬ п╡п╫я┐я┌я─я√я┬п╫я√я┘ я┘п╬я│я┌я√п╡.
 
-xinetd також ма╓ можлив╕сть прив'язувати конкретн╕ серв╕си до
-конкретних ╕нтерфейс╕в. Це корисно, коли ви хочете зробити серв╕си
-доступними лише для внутр╕шньо╖ мереж╕, але не для решти ╤нтернету.
-Або ж мати р╕зн╕ серв╕си на тому ж номер╕ порта, але р╕зних
-╕нтерфейсах.
+xinetd я┌п╟п╨п╬п╤ п╪п╟я■ п╪п╬п╤п╩п╦п╡я√я│я┌я▄ п©я─п╦п╡'я▐п╥я┐п╡п╟я┌п╦ п╨п╬п╫п╨я─п╣я┌п╫я√ я│п╣я─п╡я√я│п╦ п╢п╬
+п╨п╬п╫п╨я─п╣я┌п╫п╦я┘ я√п╫я┌п╣я─я└п╣п╧я│я√п╡. п╕п╣ п╨п╬я─п╦я│п╫п╬, п╨п╬п╩п╦ п╡п╦ я┘п╬я┤п╣я┌п╣ п╥я─п╬п╠п╦я┌п╦ я│п╣я─п╡я√я│п╦
+п╢п╬я│я┌я┐п©п╫п╦п╪п╦ п╩п╦я┬п╣ п╢п╩я▐ п╡п╫я┐я┌я─я√я┬п╫я▄п╬я≈ п╪п╣я─п╣п╤я√, п╟п╩п╣ п╫п╣ п╢п╩я▐ я─п╣я┬я┌п╦ п├п╫я┌п╣я─п╫п╣я┌я┐.
+п░п╠п╬ п╤ п╪п╟я┌п╦ я─я√п╥п╫я√ я│п╣я─п╡я√я│п╦ п╫п╟ я┌п╬п╪я┐ п╤ п╫п╬п╪п╣я─я√ п©п╬я─я┌п╟, п╟п╩п╣ я─я√п╥п╫п╦я┘
+я√п╫я┌п╣я─я└п╣п╧я│п╟я┘.
 
-%description -l ru
-xinetd - замена inetd с богатыми возможностями.
+%description -l ru.UTF-8
+xinetd - п╥п╟п╪п╣п╫п╟ inetd я│ п╠п╬пЁп╟я┌я▀п╪п╦ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▐п╪п╦.
 
-Среди прочего, xinetd имеет механизмы управления доступом, богатые
-возможности протоколирования, способность регулировать доступность
-сервисов в зависимости от времени, может ограничивать количество
-одновременно работающих серверов.
+п║я─п╣п╢п╦ п©я─п╬я┤п╣пЁп╬, xinetd п╦п╪п╣п╣я┌ п╪п╣я┘п╟п╫п╦п╥п╪я▀ я┐п©я─п╟п╡п╩п╣п╫п╦я▐ п╢п╬я│я┌я┐п©п╬п╪, п╠п╬пЁп╟я┌я▀п╣
+п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╦ п©я─п╬я┌п╬п╨п╬п╩п╦я─п╬п╡п╟п╫п╦я▐, я│п©п╬я│п╬п╠п╫п╬я│я┌я▄ я─п╣пЁя┐п╩п╦я─п╬п╡п╟я┌я▄ п╢п╬я│я┌я┐п©п╫п╬я│я┌я▄
+я│п╣я─п╡п╦я│п╬п╡ п╡ п╥п╟п╡п╦я│п╦п╪п╬я│я┌п╦ п╬я┌ п╡я─п╣п╪п╣п╫п╦, п╪п╬п╤п╣я┌ п╬пЁя─п╟п╫п╦я┤п╦п╡п╟я┌я▄ п╨п╬п╩п╦я┤п╣я│я┌п╡п╬
+п╬п╢п╫п╬п╡я─п╣п╪п╣п╫п╫п╬ я─п╟п╠п╬я┌п╟я▌я┴п╦я┘ я│п╣я─п╡п╣я─п╬п╡.
 
-xinetd имеет возможность перенаправлять TCP потоки на другой хост и
-порт. Это полезно для тех, кто использует ip маскарадинг или NAT и
-хочет иметь возможность доступа к внутренним хостам.
+xinetd п╦п╪п╣п╣я┌ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п©п╣я─п╣п╫п╟п©я─п╟п╡п╩я▐я┌я▄ TCP п©п╬я┌п╬п╨п╦ п╫п╟ п╢я─я┐пЁп╬п╧ я┘п╬я│я┌ п╦
+п©п╬я─я┌. п╜я┌п╬ п©п╬п╩п╣п╥п╫п╬ п╢п╩я▐ я┌п╣я┘, п╨я┌п╬ п╦я│п©п╬п╩я▄п╥я┐п╣я┌ ip п╪п╟я│п╨п╟я─п╟п╢п╦п╫пЁ п╦п╩п╦ NAT п╦
+я┘п╬я┤п╣я┌ п╦п╪п╣я┌я▄ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п╢п╬я│я┌я┐п©п╟ п╨ п╡п╫я┐я┌я─п╣п╫п╫п╦п╪ я┘п╬я│я┌п╟п╪.
 
-xinetd также имеет возможность привязывать конкретные сервисы к
-конкретным интерфейсам. Это полезно, если вы хотите сделать сервисы
-доступными только для внутренней сети, но не для остального Интернета.
-Или же иметь разные сервисы на том же номере порта, но разных
-интерфейсах.
+xinetd я┌п╟п╨п╤п╣ п╦п╪п╣п╣я┌ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п©я─п╦п╡я▐п╥я▀п╡п╟я┌я▄ п╨п╬п╫п╨я─п╣я┌п╫я▀п╣ я│п╣я─п╡п╦я│я▀ п╨
+п╨п╬п╫п╨я─п╣я┌п╫я▀п╪ п╦п╫я┌п╣я─я└п╣п╧я│п╟п╪. п╜я┌п╬ п©п╬п╩п╣п╥п╫п╬, п╣я│п╩п╦ п╡я▀ я┘п╬я┌п╦я┌п╣ я│п╢п╣п╩п╟я┌я▄ я│п╣я─п╡п╦я│я▀
+п╢п╬я│я┌я┐п©п╫я▀п╪п╦ я┌п╬п╩я▄п╨п╬ п╢п╩я▐ п╡п╫я┐я┌я─п╣п╫п╫п╣п╧ я│п╣я┌п╦, п╫п╬ п╫п╣ п╢п╩я▐ п╬я│я┌п╟п╩я▄п╫п╬пЁп╬ п≤п╫я┌п╣я─п╫п╣я┌п╟.
+п≤п╩п╦ п╤п╣ п╦п╪п╣я┌я▄ я─п╟п╥п╫я▀п╣ я│п╣я─п╡п╦я│я▀ п╫п╟ я┌п╬п╪ п╤п╣ п╫п╬п╪п╣я─п╣ п©п╬я─я┌п╟, п╫п╬ я─п╟п╥п╫я▀я┘
+п╦п╫я┌п╣я─я└п╣п╧я│п╟я┘.
 
 %prep
 %setup -q
