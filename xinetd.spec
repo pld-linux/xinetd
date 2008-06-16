@@ -27,6 +27,7 @@ URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_howl:BuildRequires:	howl-devel >= 1.0.0-4}
+BuildRequires:	libselinux-devel
 BuildRequires:	libwrap-devel
 %{?with_howl:BuildRequires:	pkgconfig}
 BuildRequires:	rpmbuild(macros) >= 1.268
