@@ -9,7 +9,7 @@ Summary(ru.UTF-8):	xinetd - богатая возможностями замен
 Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
 Version:	2.3.14
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		Daemons
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
@@ -19,6 +19,10 @@ Patch0:		%{name}-no_libnsl.patch
 Patch1:		%{name}-tcp_rpc.patch
 Patch2:		%{name}-howl.patch
 Patch3:		%{name}-man.patch
+Patch4:		%{name}-bind-ipv6.patch
+Patch5:		%{name}-label.patch
+Patch6:		%{name}-contextconf.patch
+Patch7:		%{name}-ssize_t.patch
 URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -116,6 +120,10 @@ xinetd также имеет возможность привязывать ко�
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
 %{__aclocal}
@@ -123,6 +131,7 @@ xinetd также имеет возможность привязывать ко�
 cp -f /usr/share/automake/config.sub .
 %configure \
 	%{?with_howl:--with-howl} \
+	--with-labeled-networking \
 	--with-libwrap \
 	--with-loadavg
 %{__make}
