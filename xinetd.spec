@@ -11,7 +11,7 @@ Name:		xinetd
 Version:	2.3.14
 Release:	4
 License:	BSD-like
-Group:		Daemons
+Group:		Networking/Daemons
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
 # Source0-md5:	567382d7972613090215c6c54f9b82d9
 Source1:	%{name}.inet.sh
