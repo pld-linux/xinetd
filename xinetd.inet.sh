@@ -81,12 +81,12 @@ parse_one_service()
 	fi
 	echo "	user		= $USER"
 	[ "${GROUP:-n}" = "n" ] || echo "	group		= $GROUP"
-        if [ "$SERVER" = "tcpd" ] ; then
-		SERVER="$DAEMON"
-        else
-                DAEMONARGS="$DAEMON $DAEMONARGS"
-                XFLAGS="$XFLAGS NAMEINARGS "
-        fi
+		if [ "$SERVER" = "tcpd" ] ; then
+			SERVER="$DAEMON"
+		else
+			DAEMONARGS="$DAEMON $DAEMONARGS"
+			XFLAGS="$XFLAGS NAMEINARGS "
+		fi
 	echo "	server		= $SERVER"
 
 	[ "${DAEMONARGS:-n}" = "n" ] || echo "	server_args	= $DAEMONARGS"
