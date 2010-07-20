@@ -91,16 +91,19 @@ parse_one_service()
 
 	[ "${DAEMONARGS:-n}" = "n" ] || echo "	server_args	= $DAEMONARGS"
 
-	for i in $FLAGS ; do
-		if [ "$i" = "wait" ]; then
+	for i in $FLAGS; do
+		case "$i" in
+		wait)
 			echo "	wait		= yes"
-		elif [ "$i" = "nowait" ]; then
+			;;
+		nowait)
 			echo "	wait		= no"
 			[ "${MAX_CONNECTIONS:-n}" = "n" ] || echo "	instances	= $MAX_CONNECTIONS"
 			[ "${MAX_CONNECTIONS_PER_SOURCE:-n}" = "n" ] || echo "	per_source	= $MAX_CONNECTIONS_PER_SOURCE"
-		else
+		*)
 			XFLAGS="$XFLAGS $i"
-		fi
+			;;
+		esac
 	done
 	[ "${XFLAGS:-n}" = "n" ]	|| echo "	flags		=$XFLAGS"
 
