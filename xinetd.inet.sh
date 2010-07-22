@@ -105,6 +105,9 @@ parse_one_service()
 			;;
 		esac
 	done
+	if [ "${FAMILY:-not}" != "not" ]; then
+		XFLAGS="$XFLAGS $FAMILY"
+	fi
 	[ "${XFLAGS:-n}" = "n" ]	|| echo "	flags		=$XFLAGS"
 
 	[ "${INTERFACE:-n}" = "n" ]	|| echo "	bind		= $INTERFACE"
