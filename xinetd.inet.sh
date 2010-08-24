@@ -31,7 +31,7 @@ parse_one_service()
 	[ "${DAEMON:-not}" = "not" ]		&& ERROR_CODE=17
 	[ "${SOCK_TYPE:-not}" = "not" ]		&& ERROR_CODE=18
 
-	if [ ! $ERROR_CODE -eq 0 ] ; then
+	if [ ! $ERROR_CODE -eq 0 ]; then
 		echo "ERROR: Parse error."
 		case "$ERROR_CODE" in
 			11)
@@ -65,8 +65,8 @@ parse_one_service()
 	echo "service $SERVICE_NAME"
 	echo "{"
 	if [ "${SERVICE_TYPE:-n}" != "n" ]; then
-		for i in $SERVICE_TYPE ; do
-			if [ "$i" = "RPC" ] ; then
+		for i in $SERVICE_TYPE; do
+			if [ "$i" = "RPC" ]; then
 				[ "${RPCVERSION:-n}" = "n" ] || echo "	rpc_version	= $RPCVERSION"
 				[ "${RPCNUMBER:-n}" = "n" ] || echo "	rpc_number	= $RPCNUMBER"
 			fi
@@ -81,7 +81,7 @@ parse_one_service()
 	fi
 	echo "	user		= $USER"
 	[ "${GROUP:-n}" = "n" ] || echo "	group		= $GROUP"
-		if [ "$SERVER" = "tcpd" ] ; then
+		if [ "$SERVER" = "tcpd" ]; then
 			SERVER="$DAEMON"
 		else
 			DAEMONARGS="$DAEMON $DAEMONARGS"
@@ -100,6 +100,7 @@ parse_one_service()
 			echo "	wait		= no"
 			[ "${MAX_CONNECTIONS:-n}" = "n" ] || echo "	instances	= $MAX_CONNECTIONS"
 			[ "${MAX_CONNECTIONS_PER_SOURCE:-n}" = "n" ] || echo "	per_source	= $MAX_CONNECTIONS_PER_SOURCE"
+			;;
 		*)
 			XFLAGS="$XFLAGS $i"
 			;;
