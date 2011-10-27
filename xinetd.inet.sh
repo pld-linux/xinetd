@@ -25,10 +25,12 @@ parse_one_service()
 	if [ "${RPCNAME:-not}" = "not" ]; then
 		[ "${PORT:-not}" = "not" ]	&& ERROR_CODE=13
 	fi
+	if [ -z "${REDIRECT}" ]; then
+		[ "${SERVER:-not}" = "not" ]	&& ERROR_CODE=15
+		[ "${DAEMON:-not}" = "not" ]	&& ERROR_CODE=17
+	fi
 	[ "${USER:-not}" = "not" ]		&& ERROR_CODE=14
-	[ "${SERVER:-not}" = "not" ]		&& ERROR_CODE=15
 	[ "${FLAGS:-not}" = "not" ]		&& ERROR_CODE=16
-	[ "${DAEMON:-not}" = "not" ]		&& ERROR_CODE=17
 	[ "${SOCK_TYPE:-not}" = "not" ]		&& ERROR_CODE=18
 
 	if [ ! $ERROR_CODE -eq 0 ]; then
@@ -83,13 +85,14 @@ parse_one_service()
 	[ "${GROUP:-n}" = "n" ] || echo "	group		= $GROUP"
 		if [ "$SERVER" = "tcpd" ]; then
 			SERVER="$DAEMON"
-		else
+		elif [ -z "$REDIRECT" ]; then
 			DAEMONARGS="$DAEMON $DAEMONARGS"
 			XFLAGS="$XFLAGS NAMEINARGS "
 		fi
-	echo "	server		= $SERVER"
-
-	[ "${DAEMONARGS:-n}" = "n" ] || echo "	server_args	= $DAEMONARGS"
+	if [ "${SERVER:-not}" != "not" ]; then
+		echo "	server		= $SERVER"
+		[ "${DAEMONARGS:-n}" = "n" ] || echo "	server_args	= $DAEMONARGS"
+	fi
 
 	for i in $FLAGS; do
 		case "$i" in
@@ -109,7 +112,7 @@ parse_one_service()
 	if [ "${FAMILY:-not}" != "not" ]; then
 		XFLAGS="$XFLAGS $FAMILY"
 	fi
-	[ "${XFLAGS:-n}" = "n" ]	|| echo "	flags		=$XFLAGS"
+	[ "${XFLAGS:-n}" = "n" ]	|| echo "	flags		= $XFLAGS"
 
 	[ "${INTERFACE:-n}" = "n" ]	|| echo "	bind		= $INTERFACE"
 	[ "${NICE:-n}" = "n" ]		|| echo "	nice		= $NICE"
