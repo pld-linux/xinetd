@@ -8,21 +8,17 @@ Summary(pt_BR.UTF-8):	O xinetd é um substituto poderoso e seguro para o inetd
 Summary(ru.UTF-8):	xinetd - богатая возможностями замена inetd
 Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
-Version:	2.3.14
-Release:	6
+Version:	2.3.15
+Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
-# Source0-md5:	567382d7972613090215c6c54f9b82d9
+# Source0-md5:	77358478fd58efa6366accae99b8b04c
 Source1:	%{name}.inet.sh
 Patch0:		%{name}-no_libnsl.patch
-Patch1:		%{name}-tcp_rpc.patch
-Patch2:		%{name}-howl.patch
-Patch3:		%{name}-man.patch
-Patch4:		%{name}-bind-ipv6.patch
-Patch5:		%{name}-label.patch
-Patch6:		%{name}-contextconf.patch
-Patch7:		%{name}-ssize_t.patch
+Patch1:		%{name}-howl.patch
+Patch2:		%{name}-man.patch
+Patch3:		%{name}-bind-ipv6.patch
 URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -121,10 +117,6 @@ xinetd также имеет возможность привязывать ко�
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
 
 %build
 %{__aclocal}
@@ -169,7 +161,11 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README CHANGELOG sample.conf xconv.pl
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}/itox
+%attr(755,root,root) %{_sbindir}/xinetd
 %attr(640,root,root) %ghost %{_sysconfdir}/xinetd.conf
 %attr(640,root,root) /etc/sysconfig/rc-inet.script
-%{_mandir}/man[158]/*
+%{_mandir}/man5/xinetd.conf.5*
+%{_mandir}/man8/itox.8*
+%{_mandir}/man8/xinetd.8*
+%{_mandir}/man8/xinetd.log.8*
