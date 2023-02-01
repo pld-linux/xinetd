@@ -9,7 +9,7 @@ Summary(ru.UTF-8):	xinetd - богатая возможностями замен
 Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
 Version:	2.3.15
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
