@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	howl	# mdns/howl service registration support
+%bcond_with	howl	# mdns/howl service registration support
 #
 Summary:	Xinetd - a powerful replacement for inetd
 Summary(pl.UTF-8):	Xinetd - rozbudowany zamiennik inetd
@@ -9,7 +9,7 @@ Summary(ru.UTF-8):	xinetd - богатая возможностями замен
 Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
 Version:	2.3.15
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
@@ -19,6 +19,7 @@ Patch0:		%{name}-no_libnsl.patch
 Patch1:		%{name}-howl.patch
 Patch2:		%{name}-man.patch
 Patch3:		%{name}-bind-ipv6.patch
+Patch4:         xinetd-2.3.15-remove-deprecated-flask.h.patch
 URL:		http://www.xinetd.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -117,17 +118,20 @@ xinetd также имеет возможность привязывать ко�
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__aclocal}
 %{__autoconf}
 cp -f /usr/share/automake/config.sub .
 %configure \
+        CFLAGS="%{rpmcppflags} %{rpmcflags} $(pkg-config --cflags libtirpc)" \
 	%{?with_howl:--with-howl} \
 	--with-labeled-networking \
 	--with-libwrap \
 	--with-loadavg
-%{__make}
+%{__make} \
+        LDFLAGS="%{rpmldflags} $(pkg-config --libs libtirpc)"
 
 %install
 rm -rf $RPM_BUILD_ROOT
