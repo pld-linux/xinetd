@@ -1,0 +1,20 @@
+diff -up xinetd-2.3.15/xinetd/child.c.remove-flaskh xinetd-2.3.15/xinetd/child.c
+--- xinetd-2.3.15/xinetd/child.c.remove-flaskh	2020-04-07 12:28:52.538123162 +0200
++++ xinetd-2.3.15/xinetd/child.c	2020-04-07 12:28:58.980980069 +0200
+@@ -33,7 +33,6 @@
+ #endif
+ #ifdef LABELED_NET
+ #include <selinux/selinux.h>
+-#include <selinux/flask.h>
+ #include <selinux/context.h>
+ #endif
+ 
+@@ -551,7 +550,7 @@ static int set_context_from_socket( cons
+    if (!(new_context = context_str(bcon)))
+      goto fail;
+    
+-   if (security_compute_create(new_context, exec_context, SECCLASS_PROCESS,
++   if (security_compute_create(new_context, exec_context, string_to_security_class("process"),
+                                &new_exec_context) < 0)
+      goto fail;
+ 
