@@ -1,32 +1,21 @@
-#
-# Conditional build:
-%bcond_with	howl	# mdns/howl service registration support
-#
 Summary:	Xinetd - a powerful replacement for inetd
 Summary(pl.UTF-8):	Xinetd - rozbudowany zamiennik inetd
 Summary(pt_BR.UTF-8):	O xinetd é um substituto poderoso e seguro para o inetd
 Summary(ru.UTF-8):	xinetd - богатая возможностями замена inetd
 Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
-Version:	2.3.15
-Release:	3
+Version:	2.3.15.4
+Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
-Source0:	http://www.xinetd.org/%{name}-%{version}.tar.gz
-# Source0-md5:	77358478fd58efa6366accae99b8b04c
+Source0:	https://github.com/openSUSE/xinetd/releases/download/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	cbdb8e10a7ccb047c08ac1922e670318
 Source1:	%{name}.inet.sh
-Patch0:		%{name}-no_libnsl.patch
-Patch1:		%{name}-howl.patch
-Patch2:		%{name}-man.patch
-Patch3:		%{name}-bind-ipv6.patch
-Patch4:         xinetd-2.3.15-remove-deprecated-flask.h.patch
-URL:		http://www.xinetd.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-%{?with_howl:BuildRequires:	howl-devel >= 1.0.0-4}
+URL:		https://github.com/openSUSE/xinetd/
 BuildRequires:	libselinux-devel
+BuildRequires:	libtirpc-devel
 BuildRequires:	libwrap-devel
-%{?with_howl:BuildRequires:	pkgconfig}
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	rc-inetd
 Requires:	rc-inetd
@@ -114,42 +103,31 @@ xinetd также имеет возможность привязывать ко�
 
 %prep
 %setup -q
-%patch -P0 -p1
-%patch -P1 -p1
-%patch -P2 -p1
-%patch -P3 -p1
-%patch -P4 -p1
 
 %build
-%{__aclocal}
-%{__autoconf}
-cp -f /usr/share/automake/config.sub .
+# empty parameter lists mean (void) since C23, which gcc 15 defaults to
 %configure \
-        CFLAGS="%{rpmcppflags} %{rpmcflags} $(pkg-config --cflags libtirpc)" \
-	%{?with_howl:--with-howl} \
+	CFLAGS="%{rpmcflags} -std=gnu17" \
+	--disable-silent-rules \
 	--with-labeled-networking \
 	--with-libwrap \
-	--with-loadavg
-%{__make} \
-        LDFLAGS="%{rpmldflags} $(pkg-config --libs libtirpc)"
+	--with-loadavg \
+	--with-rpc
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sbindir} \
-	$RPM_BUILD_ROOT%{_mandir}/man{5,8} \
-	$RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
+install -d $RPM_BUILD_ROOT/etc/sysconfig
 
-install xinetd/xinetd $RPM_BUILD_ROOT%{_sbindir}
-install xinetd/itox $RPM_BUILD_ROOT%{_sbindir}
-install xinetd/xinetd.conf.man $RPM_BUILD_ROOT%{_mandir}/man5/xinetd.conf.5
-install xinetd/xinetd.log.man $RPM_BUILD_ROOT%{_mandir}/man8/xinetd.log.8
-install xinetd/xinetd.man $RPM_BUILD_ROOT%{_mandir}/man8/xinetd.8
-install xinetd/itox.8 $RPM_BUILD_ROOT%{_mandir}/man8/itox.8
+# rc-inetd regenerates %{_sysconfdir}/xinetd.conf on every start, so upstream's
+# xinetd.conf and xinetd.d/ would only be dead files here
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	sysconf_DATA= \
+	xinetconf_DATA=
+
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inet.script
 :> $RPM_BUILD_ROOT%{_sysconfdir}/xinetd.conf
-
-cp xinetd/sample.conf .
-cp xinetd/xconv.pl .
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -164,12 +142,14 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README CHANGELOG sample.conf xconv.pl
-%attr(755,root,root) %{_sbindir}/itox
+%doc CHANGELOG COPYRIGHT README.md contrib/xinetd.conf
+%attr(755,root,root) %{_bindir}/itox
+%attr(755,root,root) %{_bindir}/xconv.pl
 %attr(755,root,root) %{_sbindir}/xinetd
 %attr(640,root,root) %ghost %{_sysconfdir}/xinetd.conf
 %attr(640,root,root) /etc/sysconfig/rc-inet.script
 %{_mandir}/man5/xinetd.conf.5*
+%{_mandir}/man5/xinetd.log.5*
 %{_mandir}/man8/itox.8*
+%{_mandir}/man8/xconv.pl.8*
 %{_mandir}/man8/xinetd.8*
-%{_mandir}/man8/xinetd.log.8*
