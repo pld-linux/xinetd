@@ -1,0 +1,43 @@
+From e95de5911c230236b51de59bd1df3f0adcc0b961 Mon Sep 17 00:00:00 2001
+From: Jan Synacek <jsynacek@redhat.com>
+Date: Tue, 6 Mar 2012 09:29:03 +0000
+Subject: [PATCH] Fix: Instances limit in xinetd can be easily bypassed
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The connections number is limited in the xined.conf file by setting the
+"instances" field.  However, when a connection is blocked after exceeding the
+“cps” limit, the xinetd “forgets” the existing instances and the instances
+limit can be exceeded.
+
+Original patch: https://src.fedoraproject.org/rpms/xinetd/c/5ae7170961e48c7ef7d3ea8b503b3348ba8a7057?branch=rawhide
+Related: https://bugzilla.redhat.com/show_bug.cgi?id=770858
+---
+ src/access.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/access.c b/src/access.c
+index b82fb94..0a2d271 100644
+--- a/src/access.c
++++ b/src/access.c
+@@ -69,6 +69,7 @@ static void cps_service_restart(void)
+    unsigned int i;
+    time_t nowtime;
+    const char *func = "cps_service_restart";
++   int rs;
+ 
+    nowtime = time(NULL);
+    for( i=0; i < pset_count( SERVICES(ps) ); i++ ) {
+@@ -80,8 +81,11 @@ static void cps_service_restart(void)
+       if( SVC_STATE(sp) == SVC_DISABLED ) {
+          scp = SVC_CONF( sp );
+          if ( SC_TIME_REENABLE(scp) <= nowtime ) {
++            rs = SVC_RUNNING_SERVERS(sp);
+             /* re-enable the service */
+             if( svc_activate(sp) == OK ) {
++               /* remember running servers after restart */
++               SVC_RUNNING_SERVERS(sp) = rs;
+                msg(LOG_ERR, func,
+                "Activating service %s", SC_NAME(scp));
+             } else {

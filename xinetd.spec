@@ -5,12 +5,14 @@ Summary(ru.UTF-8):	xinetd - богатая возможностями замен
 Summary(uk.UTF-8):	xinetd - багата можливостями заміна inetd
 Name:		xinetd
 Version:	2.3.15.4
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	https://github.com/openSUSE/xinetd/releases/download/%{version}/%{name}-%{version}.tar.xz
 # Source0-md5:	cbdb8e10a7ccb047c08ac1922e670318
 Source1:	%{name}.inet.sh
+# https://github.com/openSUSE/xinetd/commit/e95de5911c230236b51de59bd1df3f0adcc0b961
+Patch0:		%{name}-cps-instances-limit.patch
 URL:		https://github.com/openSUSE/xinetd/
 BuildRequires:	libselinux-devel
 BuildRequires:	libtirpc-devel
@@ -103,6 +105,7 @@ xinetd также имеет возможность привязывать ко�
 
 %prep
 %setup -q
+%patch -P0 -p1
 
 %build
 # empty parameter lists mean (void) since C23, which gcc 15 defaults to
